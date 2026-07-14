@@ -88,3 +88,14 @@ section.create-- display: flex; align & justify: center;
 section.filters-- display: flex; align: centre; justify: start;
 section.taskList-- display: flex; align: centre;
 footer-- display: flex; align: center; justify: space between;
+
+## 9. Responsive plan: Mobile
+
+Same plan as it is vertical in design
+
+## 10. Future Improvements
+
+Student syllabus completion helper
+Track time
+Reminder alarm
+Motivational Quotes for task completion
