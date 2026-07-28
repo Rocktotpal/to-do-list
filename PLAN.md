@@ -12,7 +12,7 @@ A person who wants to keep record of daily tasks and track them
 
 Create tasks
 Edit tasks
-Dlete tasks
+Delete tasks
 Mark completed tasks
 Filter tasks
 

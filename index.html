@@ -5,6 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>To do list</title>
     <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.0/css/all.min.css"
+      integrity="sha512-ApSLB1Pd3/bZN8fWB/RG9YhN/7bd9Hkf3AGaE2mPfebjrxagjuBtx2GcgdqIlJkUzwylBo61r9Xa9NmgBI0swA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
   </head>
   <body>
     <header>
@@ -14,13 +21,27 @@
     <section class="create">
       <input type="text" placeholder="Task 1" />
       <div class="add">
-        <p>➕</p>
+        <p><i class="fa-solid fa-plus"></i></p>
       </div>
     </section>
     <section class="filters">
-      <p>All</p>
+      <p class="active-filter">All</p>
       <p>Active</p>
       <p>Completed</p>
     </section>
+    <section class="task-list">
+      <div class="checkbox">
+        <input type="checkbox" />
+      </div>
+      <div class="task"></div>
+      <button class="delete"><i class="fa-solid fa-x"></i></button>
+    </section>
+
+    <footer>
+      <div class="items-left"><p></p></div>
+      <div class="clear-completed">
+        <p><i class="fa-solid fa-trash"></i></p>
+      </div>
+    </footer>
   </body>
 </html>
