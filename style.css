@@ -5,7 +5,8 @@
 }
 
 .app-container {
-  width: 75%;
+  max-width: 600px;
+  width: 100%;
   margin: 200px auto;
   background-color: rgb(228, 228, 221);
 }
@@ -56,7 +57,4 @@
   height: 40px;
   border-bottom: solid white 1px;
   background-color: aliceblue;
-}
-
-.active-filter {
 }

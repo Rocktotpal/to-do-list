@@ -26,25 +26,27 @@
         </div>
       </section>
       <section class="filters">
-        <p class="all active-filter">All</p>
-        <p class="active">Active</p>
-        <p class="completed">Completed</p>
+        <p class="filter active">All</p>
+        <p class="filter">Active</p>
+        <p class="filter">Completed</p>
       </section>
-      <section class="task-list">
-        <div class="checkbox">
-          <input type="checkbox" />
+      <section class="todos-container">
+        <ul class="todos-list">
+          <!-- li will be inserted later -->
+        </ul>
+        <div class="empty-state hidden">
+          <i class="fa-solid fa-clipboard-list"></i>
+          <p>No tasks here yet</p>
         </div>
-        <div class="task">
-          <p><i class="fa-solid fa-clipboard-list"></i></p>
-        </div>
-        <button class="delete"><i class="fa-solid fa-x"></i></button>
+        <!-- <button class="delete hidden"><i class="fa-solid fa-x"></i></button> -->
       </section>
 
       <footer>
-        <div class="items-left"><p></p></div>
-        <div class="clear-completed">
+        <p id="items-left">0 itmes left</p>
+        <button id="clear-completed">Clear completed</button>
+        <!-- <div class="clear-completed">
           <p><i class="fa-solid fa-trash"></i></p>
-        </div>
+        </div> -->
       </footer>
     </div>
   </body>
