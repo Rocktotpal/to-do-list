@@ -55,6 +55,32 @@
   align-items: center;
   padding-left: 1rem;
   height: 40px;
-  border-bottom: solid white 1px;
+  border-bottom: solid rgb(164, 163, 163) 1.5px;
   background-color: aliceblue;
+}
+
+.todos-container {
+  padding: 15px 0;
+  max-height: 300px;
+  overflow-y: auto;
+  background-color: aliceblue;
+}
+
+.todos-list {
+  list-style: none;
+}
+
+footer {
+  background-color: rgb(230, 228, 228);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.4rem 1rem;
+  height: 40px;
+}
+
+#clear-completed {
+  border: none;
+  background-color: transparent;
+  padding: 4px;
 }
