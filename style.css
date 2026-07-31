@@ -106,6 +106,9 @@ body {
 
 .todos-list {
   list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
 }
 
 .todo {
