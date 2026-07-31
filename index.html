@@ -20,7 +20,7 @@
         <h3 id="date">Monday, July 26</h3>
       </header>
       <section class="create">
-        <input type="text" placeholder="Task 1" />
+        <input type="text" placeholder="Task 1" class="task-field" />
 
         <button class="add"><i class="fa-solid fa-plus"></i></button>
       </section>
@@ -32,6 +32,11 @@
       <section class="todos-container">
         <ul class="todos-list">
           <!-- li will be inserted later -->
+          <li class="todo">
+            <input type="checkbox" class="checkbox" />
+            <div class="task"><p>Build Projects</p></div>
+            <button class="delete"><i class="fa-solid fa-x"></i></button>
+          </li>
         </ul>
         <div class="empty-state hidden">
           <i class="fa-solid fa-clipboard-list"></i>

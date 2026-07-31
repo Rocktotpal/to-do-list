@@ -36,7 +36,7 @@ body {
   padding: 1rem;
 }
 
-.create > input {
+.task-field {
   width: 92%;
   padding: 0.5rem;
   font-size: 0.9rem;
@@ -108,6 +108,19 @@ body {
   list-style: none;
 }
 
+.todo {
+  display: flex;
+  gap: 4px;
+  padding-left: 10px;
+}
+
+.task {
+  width: 90%;
+  border: solid 1px lightblue;
+  border-radius: 4px;
+  padding: 4px;
+}
+
 footer {
   background-color: rgb(230, 228, 228);
   display: flex;
@@ -123,4 +136,8 @@ footer {
   background-color: transparent;
   padding: 4px;
   font-size: 0.9rem;
+}
+
+.hidden {
+  display: none;
 }
