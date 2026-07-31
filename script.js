@@ -14,9 +14,15 @@ const options = {
 };
 date.textContent = new Intl.DateTimeFormat("en-IN", options).format(now);
 
-// const task = `
-// <li>
-// `;
+toDoList.innerHTML = "";
+
 btnAdd.addEventListener("click", function () {
-  //   toDoList.insertAdjacentHTML();
+  const task = `
+<li class="todo">
+<input type="checkbox" class="checkbox" />
+            <div class="task"><p>${taskField.value}</p></div>
+            <button class="delete"><i class="fa-solid fa-x"></i></button>
+          </li>
+`;
+  toDoList.insertAdjacentHTML("afterbegin", task);
 });
