@@ -17,18 +17,17 @@
     <div class="app-container">
       <header class="header">
         <h1><i class="fa-solid fa-circle-check"></i> My Tasks</h1>
-        <h3>Monday, July 26</h3>
+        <h3 id="date">Monday, July 26</h3>
       </header>
       <section class="create">
         <input type="text" placeholder="Task 1" />
-        <div class="add">
-          <p><i class="fa-solid fa-plus"></i></p>
-        </div>
+
+        <button class="add"><i class="fa-solid fa-plus"></i></button>
       </section>
       <section class="filters">
-        <p class="filter active">All</p>
-        <p class="filter">Active</p>
-        <p class="filter">Completed</p>
+        <button class="filter active-filter">All</button>
+        <button class="filter">Active</button>
+        <button class="filter">Completed</button>
       </section>
       <section class="todos-container">
         <ul class="todos-list">
@@ -49,5 +48,6 @@
         </div> -->
       </footer>
     </div>
+    <script src="script.js"></script>
   </body>
 </html>

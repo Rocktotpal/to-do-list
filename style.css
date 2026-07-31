@@ -4,6 +4,12 @@
   box-sizing: border-box;
 }
 
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: sans-serif;
+}
 .app-container {
   max-width: 600px;
   width: 100%;
@@ -47,6 +53,7 @@
   color: white;
   border: none;
   border-radius: 3px;
+  font-size: 1.2rem;
 }
 
 .filters {
@@ -57,6 +64,37 @@
   height: 40px;
   border-bottom: solid rgb(164, 163, 163) 1.5px;
   background-color: aliceblue;
+}
+
+.filter {
+  padding: 3px 7px;
+
+  border: none;
+  font-size: 1rem;
+  background-color: aliceblue;
+  color: rgba(11, 11, 11, 0.805);
+  opacity: 0.9;
+}
+
+.active-filter {
+  border-bottom: solid 2px rgb(3, 3, 115);
+  color: black;
+  font-weight: 500;
+  opacity: 1;
+}
+
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100px;
+  gap: 10px;
+  font-size: 1rem;
+}
+
+.fa-clipboard-list {
+  font-size: 2rem;
 }
 
 .todos-container {
@@ -77,10 +115,12 @@ footer {
   justify-content: space-between;
   padding: 0.4rem 1rem;
   height: 40px;
+  font-size: 0.9rem;
 }
 
 #clear-completed {
   border: none;
   background-color: transparent;
   padding: 4px;
+  font-size: 0.9rem;
 }
