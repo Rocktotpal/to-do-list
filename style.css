@@ -15,6 +15,7 @@ body {
   width: 100%;
   margin: 200px auto;
   background-color: rgb(228, 228, 221);
+  position: relative;
 }
 
 .header {
@@ -151,12 +152,13 @@ footer {
   width: 300px;
   background-color: #fff;
   display: flex;
-  justify-content: center;
   align-items: center;
-  position: relative;
+  position: absolute;
+  text-align: center;
   z-index: 100;
-  top: 65%;
-  left: 25%;
+  top: 50%;
+  transform: translateX(50%);
+  border-radius: 4px;
 }
 
 .btn-close-modal {
@@ -168,4 +170,7 @@ footer {
   display: block;
   border: none;
   cursor: pointer;
+}
+
+.overlay {
 }
