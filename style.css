@@ -145,3 +145,27 @@ footer {
 .hidden {
   display: none;
 }
+
+.modal {
+  height: 100px;
+  width: 300px;
+  background-color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  z-index: 100;
+  top: 65%;
+  left: 25%;
+}
+
+.btn-close-modal {
+  position: absolute;
+  top: 0.6rem;
+  right: 0.8rem;
+  font-size: 1.6rem;
+  color: rgb(195, 3, 3);
+  display: block;
+  border: none;
+  cursor: pointer;
+}
