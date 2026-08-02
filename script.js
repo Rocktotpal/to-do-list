@@ -7,6 +7,7 @@ const toDoList = document.querySelector(".todos-list");
 const showModal = document.querySelector(".modal");
 const overlay = document.querySelector(".overlay");
 const btnCloseModal = document.querySelector(".btn-close-modal");
+const itemCount = document.getElementById("items-left");
 
 const now = new Date();
 const options = {
@@ -18,6 +19,7 @@ const options = {
 date.textContent = new Intl.DateTimeFormat("en-IN", options).format(now);
 
 toDoList.innerHTML = "";
+let currentTask = 0;
 
 const addTask = function () {
   if (taskField.value.trim() === "") {
@@ -33,8 +35,11 @@ const addTask = function () {
             <button class="delete"><i class="fa-solid fa-x"></i></button>
           </li>
 `;
-  console.log(taskField.value);
+
   toDoList.insertAdjacentHTML("afterbegin", task);
+  currentTask++;
+  console.log(currentTask);
+  itemCount.textContent = `${currentTask} items left`;
 };
 
 btnAdd.addEventListener("click", function () {
@@ -55,7 +60,6 @@ btnCloseModal.addEventListener("click", function () {
 });
 
 document.addEventListener("keydown", function (e) {
-  console.log(e);
   if (e.key === "Escape" || !showModal.classList.contains("hidden")) {
     closeModal();
   }
