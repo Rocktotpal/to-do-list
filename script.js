@@ -4,6 +4,9 @@ const date = document.getElementById("date");
 const taskField = document.querySelector(".task-field");
 const btnAdd = document.querySelector(".add");
 const toDoList = document.querySelector(".todos-list");
+const showModal = document.querySelector(".modal");
+const overlay = document.querySelector(".overlay");
+const btnCloseModal = document.querySelector(".btn-close-modal");
 
 const now = new Date();
 const options = {
@@ -17,6 +20,12 @@ date.textContent = new Intl.DateTimeFormat("en-IN", options).format(now);
 toDoList.innerHTML = "";
 
 btnAdd.addEventListener("click", function () {
+  if (taskField.value.trim() === "") {
+    showModal.classList.remove("hidden");
+    overlay.classList.remove("hidden");
+    return;
+  }
+
   const task = `
 <li class="todo">
 <input type="checkbox" class="checkbox" />
@@ -24,5 +33,22 @@ btnAdd.addEventListener("click", function () {
             <button class="delete"><i class="fa-solid fa-x"></i></button>
           </li>
 `;
+  console.log(taskField.value);
   toDoList.insertAdjacentHTML("afterbegin", task);
+});
+
+const closeModal = function () {
+  showModal.classList.add("hidden");
+  overlay.classList.add("hidden");
+};
+
+btnCloseModal.addEventListener("click", function () {
+  closeModal();
+});
+
+document.addEventListener("keydown", function (e) {
+  console.log(e);
+  if (e.key === "Escape" || !showModal.classList.contains("hidden")) {
+    closeModal();
+  }
 });

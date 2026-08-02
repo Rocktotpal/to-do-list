@@ -16,6 +16,9 @@ body {
   margin: 200px auto;
   background-color: rgb(228, 228, 221);
   position: relative;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
 }
 
 .header {
