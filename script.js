@@ -19,7 +19,7 @@ date.textContent = new Intl.DateTimeFormat("en-IN", options).format(now);
 
 toDoList.innerHTML = "";
 
-btnAdd.addEventListener("click", function () {
+const addTask = function () {
   if (taskField.value.trim() === "") {
     showModal.classList.remove("hidden");
     overlay.classList.remove("hidden");
@@ -35,6 +35,14 @@ btnAdd.addEventListener("click", function () {
 `;
   console.log(taskField.value);
   toDoList.insertAdjacentHTML("afterbegin", task);
+};
+
+btnAdd.addEventListener("click", function () {
+  addTask();
+});
+
+document.addEventListener("keydown", function (e) {
+  if (e.key === "Enter") addTask();
 });
 
 const closeModal = function () {
