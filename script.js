@@ -8,6 +8,7 @@ const showModal = document.querySelector(".modal");
 const overlay = document.querySelector(".overlay");
 const btnCloseModal = document.querySelector(".btn-close-modal");
 const itemCount = document.getElementById("items-left");
+const btnDelete = document.querySelector(".delete");
 
 const now = new Date();
 const options = {
@@ -20,25 +21,34 @@ date.textContent = new Intl.DateTimeFormat("en-IN", options).format(now);
 
 toDoList.innerHTML = "";
 let currentTask = 0;
+let taskArr = [];
 
 const addTask = function () {
+  toDoList.innerHTML = "";
+
   if (taskField.value.trim() === "") {
     showModal.classList.remove("hidden");
     overlay.classList.remove("hidden");
     return;
   }
 
-  const task = `
+  taskArr.push(taskField.value);
+
+  taskArr.forEach(function (el) {
+    const task = `
 <li class="todo">
 <input type="checkbox" class="checkbox" />
-            <div class="task"><p>${taskField.value}</p></div>
+            <div class="task"><p>${el}</p></div>
             <button class="delete"><i class="fa-solid fa-x"></i></button>
           </li>
 `;
 
-  toDoList.insertAdjacentHTML("afterbegin", task);
+    toDoList.insertAdjacentHTML("beforeend", task);
+    console.log(toDoList);
+  });
+
   currentTask++;
-  console.log(currentTask);
+
   itemCount.textContent = `${currentTask} items left`;
 };
 
@@ -64,3 +74,9 @@ document.addEventListener("keydown", function (e) {
     closeModal();
   }
 });
+
+document.querySelector("todo").addEventListener("click");
+// btnDelete.addEventListener("click", function (e) {
+//   console.log(e);
+//   console.log("Hi");
+// });
