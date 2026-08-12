@@ -9,6 +9,7 @@ const overlay = document.querySelector(".overlay");
 const btnCloseModal = document.querySelector(".btn-close-modal");
 const itemCount = document.getElementById("items-left");
 const btnDelete = document.querySelector(".delete");
+const emptyState = document.querySelector(".empty-state");
 
 const now = new Date();
 const options = {
@@ -23,19 +24,23 @@ toDoList.innerHTML = "";
 let currentTask = 0;
 let taskArr = [];
 
+// function to display all tasks
+
 const displayTask = function () {
   taskArr.forEach(function (el) {
     const task = `
-<li class="todo">
-<input type="checkbox" class="checkbox" />
-            <div class="task"><p>${el}</p></div>
-            <button class="delete"><i class="fa-solid fa-x delete"></i></button>
-          </li>
-`;
+    <li class="todo">
+    <input type="checkbox" class="checkbox" />
+    <div class="task"><p>${el}</p></div>
+    <button class="delete"><i class="fa-solid fa-x delete"></i></button>
+    </li>
+    `;
 
     toDoList.insertAdjacentHTML("beforeend", task);
   });
 };
+
+// function for adding a task
 
 const addTask = function () {
   toDoList.innerHTML = "";
@@ -50,17 +55,28 @@ const addTask = function () {
 
   displayTask();
 
+  // reset input field
+
+  taskField.value = "";
+  taskField.blur();
+
+  //  updating items left
+
   currentTask++;
 
   itemCount.textContent = `${currentTask} items left`;
 };
 
 btnAdd.addEventListener("click", function () {
+  emptyState.classList.add("hidden");
   addTask();
 });
 
 document.addEventListener("keydown", function (e) {
-  if (e.key === "Enter") addTask();
+  if (e.key === "Enter") {
+    emptyState.classList.add("hidden");
+    addTask();
+  }
 });
 
 const closeModal = function () {
@@ -85,7 +101,7 @@ document.querySelector(".todos-list").addEventListener("click", function (e) {
     const taskToBedelete = e.target
       .closest(".todo")
       .querySelector("p").textContent;
-    console.log(taskToBedelete);
+
     const index = taskArr.findIndex((task) => task === taskToBedelete);
 
     taskArr.splice(index, 1);
@@ -93,8 +109,14 @@ document.querySelector(".todos-list").addEventListener("click", function (e) {
 
     displayTask();
 
+    //  updating items left
+
     currentTask--;
 
     itemCount.textContent = `${currentTask} items left`;
+
+    if (currentTask === 0) {
+      emptyState.classList.remove("hidden");
+    }
   }
 });
