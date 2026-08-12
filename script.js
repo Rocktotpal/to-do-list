@@ -23,6 +23,20 @@ toDoList.innerHTML = "";
 let currentTask = 0;
 let taskArr = [];
 
+const displayTask = function () {
+  taskArr.forEach(function (el) {
+    const task = `
+<li class="todo">
+<input type="checkbox" class="checkbox" />
+            <div class="task"><p>${el}</p></div>
+            <button class="delete"><i class="fa-solid fa-x delete"></i></button>
+          </li>
+`;
+
+    toDoList.insertAdjacentHTML("beforeend", task);
+  });
+};
+
 const addTask = function () {
   toDoList.innerHTML = "";
 
@@ -34,18 +48,7 @@ const addTask = function () {
 
   taskArr.push(taskField.value);
 
-  taskArr.forEach(function (el) {
-    const task = `
-<li class="todo">
-<input type="checkbox" class="checkbox" />
-            <div class="task"><p>${el}</p></div>
-            <button class="delete"><i class="fa-solid fa-x"></i></button>
-          </li>
-`;
-
-    toDoList.insertAdjacentHTML("beforeend", task);
-    console.log(toDoList);
-  });
+  displayTask();
 
   currentTask++;
 
@@ -75,8 +78,23 @@ document.addEventListener("keydown", function (e) {
   }
 });
 
-document.querySelector("todo").addEventListener("click");
-// btnDelete.addEventListener("click", function (e) {
-//   console.log(e);
-//   console.log("Hi");
-// });
+document.querySelector(".todos-list").addEventListener("click", function (e) {
+  e.preventDefault();
+
+  if (e.target.classList.contains("delete")) {
+    const taskToBedelete = e.target
+      .closest(".todo")
+      .querySelector("p").textContent;
+    console.log(taskToBedelete);
+    const index = taskArr.findIndex((task) => task === taskToBedelete);
+
+    taskArr.splice(index, 1);
+    toDoList.innerHTML = "";
+
+    displayTask();
+
+    currentTask--;
+
+    itemCount.textContent = `${currentTask} items left`;
+  }
+});
