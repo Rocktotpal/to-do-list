@@ -27,10 +27,8 @@ let nextId = 1;
 
 if (taskArr.length === 0) emptyState.classList.remove("hidden");
 
-const displayTask = function () {
-  toDoList.innerHTML = "";
-  taskArr.forEach(function (el) {
-    const task = `
+const createTask = function (el) {
+  const task = `
     <li class="todo" data-id="${el.id}">
     <input type="checkbox" class="checkbox" />
     <div class="task"><p>${el.text}</p></div>
@@ -38,7 +36,13 @@ const displayTask = function () {
     </li>
     `;
 
-    toDoList.insertAdjacentHTML("beforeend", task);
+  toDoList.insertAdjacentHTML("beforeend", task);
+};
+
+const displayTask = function () {
+  toDoList.innerHTML = "";
+  taskArr.forEach(function (el) {
+    createTask(el);
   });
 };
 
@@ -118,6 +122,48 @@ filters.addEventListener("click", function (e) {
     const [...btnFilter] = e.target.parentElement.children;
     btnFilter.forEach((btn) => btn.classList.remove("active-filter"));
     e.target.classList.add("active-filter");
+
+    if (e.target.dataset.state === "active") {
+      const activeTasks = taskArr.filter((task) => task.completed === false);
+
+      toDoList.innerHTML = "";
+      activeTasks.forEach(function (el) {
+        createTask(el);
+      });
+    }
+  }
+});
+
+toDoList.addEventListener("click", function (e) {
+  if (e.target.classList.contains("checkbox")) {
+    if (!e.target.classList.contains("checkbox-clicked")) {
+      e.target.classList.add("checkbox-clicked");
+      e.target
+        .closest(".todo")
+        .querySelector("p")
+        .classList.add("task-completed");
+      const completedId = Number(e.target.closest(".todo").dataset.id);
+
+      taskArr.forEach(function (task) {
+        if (task.id === completedId) {
+          task.completed = true;
+        }
+      });
+    } else {
+      e.target.classList.remove("checkbox-clicked");
+      e.target
+        .closest(".todo")
+        .querySelector("p")
+        .classList.remove("task-completed");
+
+      const completedId = Number(e.target.closest(".todo").dataset.id);
+
+      taskArr.forEach(function (task) {
+        if (task.id === completedId) {
+          task.completed = false;
+        }
+      });
+    }
   }
 });
 
