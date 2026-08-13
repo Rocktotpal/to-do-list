@@ -26,7 +26,8 @@ let nextId = 1;
 
 if (taskArr.length === 0) emptyState.classList.remove("hidden");
 
-const displayTask = function(){
+const displayTask = function () {
+  toDoList.innerHTML = "";
   taskArr.forEach(function (el) {
     const task = `
     <li class="todo" data-id="${el.id}">
@@ -38,13 +39,9 @@ const displayTask = function(){
 
     toDoList.insertAdjacentHTML("beforeend", task);
   });
-}
-
-
+};
 
 const addTask = function () {
-  toDoList.innerHTML = "";
-
   if (taskField.value.trim() === "") {
     showModal.classList.remove("hidden");
     overlay.classList.remove("hidden");
@@ -52,15 +49,14 @@ const addTask = function () {
   }
 
   const todoObj = {
-  id: nextId,
-  text: taskField.value,
-  completed: false,
-}
+    id: nextId,
+    text: taskField.value,
+    completed: false,
+  };
 
-taskArr.push(todoObj);
-nextId++;
-
-}
+  taskArr.push(todoObj);
+  nextId++;
+};
 
 btnAdd.addEventListener("click", function () {
   emptyState.classList.add("hidden");
@@ -71,14 +67,14 @@ btnAdd.addEventListener("click", function () {
 document.addEventListener("keydown", function (e) {
   if (e.key === "Enter") {
     if (taskField.value.trim() === "") {
-    showModal.classList.remove("hidden");
-    overlay.classList.remove("hidden");
-    return;
-  }
+      showModal.classList.remove("hidden");
+      overlay.classList.remove("hidden");
+      return;
+    }
     emptyState.classList.add("hidden");
     addTask();
     displayTask();
-    }
+  }
 });
 
 const closeModal = function () {
@@ -88,12 +84,25 @@ const closeModal = function () {
 
 btnCloseModal.addEventListener("click", function () {
   closeModal();
-  
 });
 
 document.addEventListener("keydown", function (e) {
   if (e.key === "Escape") {
     closeModal();
+  }
+});
+
+toDoList.addEventListener("click", function (e) {
+  e.preventDefault();
+
+  if (e.target.classList.contains("delete")) {
+    const taskToBedelete = Number(e.target.closest(".todo").dataset.id);
+
+    const index = taskArr.findIndex((item) => item.id === taskToBedelete);
+
+    taskArr.splice(index, 1);
+
+    displayTask();
   }
 });
 
