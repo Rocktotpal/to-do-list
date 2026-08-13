@@ -131,6 +131,15 @@ filters.addEventListener("click", function (e) {
         createTask(el);
       });
     }
+
+    if (e.target.dataset.state === "completed") {
+      const completedTasks = taskArr.filter((task) => task.completed === true);
+
+      toDoList.innerHTML = "";
+      completedTasks.forEach(function (el) {
+        createTask(el);
+      });
+    }
   }
 });
 
