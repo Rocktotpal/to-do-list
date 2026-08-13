@@ -8,7 +8,6 @@ const showModal = document.querySelector(".modal");
 const overlay = document.querySelector(".overlay");
 const btnCloseModal = document.querySelector(".btn-close-modal");
 const itemCount = document.getElementById("items-left");
-const btnDelete = document.querySelector(".delete");
 const emptyState = document.querySelector(".empty-state");
 
 const now = new Date();
@@ -23,8 +22,82 @@ date.textContent = new Intl.DateTimeFormat("en-IN", options).format(now);
 toDoList.innerHTML = "";
 let currentTask = 0;
 let taskArr = [];
+let nextId = 1;
 
 if (taskArr.length === 0) emptyState.classList.remove("hidden");
+
+const displayTask = function(){
+  taskArr.forEach(function (el) {
+    const task = `
+    <li class="todo" data-id="${el.id}">
+    <input type="checkbox" class="checkbox" />
+    <div class="task"><p>${el.text}</p></div>
+    <button class="delete"><i class="fa-solid fa-x delete"></i></button>
+    </li>
+    `;
+
+    toDoList.insertAdjacentHTML("beforeend", task);
+  });
+}
+
+
+
+const addTask = function () {
+  toDoList.innerHTML = "";
+
+  if (taskField.value.trim() === "") {
+    showModal.classList.remove("hidden");
+    overlay.classList.remove("hidden");
+    return;
+  }
+
+  const todoObj = {
+  id: nextId,
+  text: taskField.value,
+  completed: false,
+}
+
+taskArr.push(todoObj);
+nextId++;
+
+}
+
+btnAdd.addEventListener("click", function () {
+  emptyState.classList.add("hidden");
+  addTask();
+  displayTask();
+});
+
+document.addEventListener("keydown", function (e) {
+  if (e.key === "Enter") {
+    if (taskField.value.trim() === "") {
+    showModal.classList.remove("hidden");
+    overlay.classList.remove("hidden");
+    return;
+  }
+    emptyState.classList.add("hidden");
+    addTask();
+    displayTask();
+    }
+});
+
+const closeModal = function () {
+  showModal.classList.add("hidden");
+  overlay.classList.add("hidden");
+};
+
+btnCloseModal.addEventListener("click", function () {
+  closeModal();
+  
+});
+
+document.addEventListener("keydown", function (e) {
+  if (e.key === "Escape") {
+    closeModal();
+  }
+});
+
+/*
 
 // function to display all tasks
 
@@ -86,21 +159,8 @@ document.addEventListener("keydown", function (e) {
     }
 });
 
-const closeModal = function () {
-  showModal.classList.add("hidden");
-  overlay.classList.add("hidden");
-};
 
-btnCloseModal.addEventListener("click", function () {
-  closeModal();
-  displayTask();
-});
 
-document.addEventListener("keydown", function (e) {
-  if (e.key === "Escape" || !showModal.classList.contains("hidden")) {
-    closeModal();
-  }
-});
 
 document.querySelector(".todos-list").addEventListener("click", function (e) {
   e.preventDefault();
@@ -128,6 +188,8 @@ document.querySelector(".todos-list").addEventListener("click", function (e) {
     }
   }
 });
+
+*/
 
 // document.querySelector(".todos-list").addEventListener("click", function (e) {
 //   e.preventDefault();
