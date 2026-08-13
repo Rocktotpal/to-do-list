@@ -24,6 +24,8 @@ toDoList.innerHTML = "";
 let currentTask = 0;
 let taskArr = [];
 
+if (taskArr.length === 0) emptyState.classList.remove("hidden");
+
 // function to display all tasks
 
 const displayTask = function () {
@@ -74,9 +76,14 @@ btnAdd.addEventListener("click", function () {
 
 document.addEventListener("keydown", function (e) {
   if (e.key === "Enter") {
+    if (taskField.value.trim() === "") {
+    showModal.classList.remove("hidden");
+    overlay.classList.remove("hidden");
+    return;
+  }
     emptyState.classList.add("hidden");
     addTask();
-  }
+    }
 });
 
 const closeModal = function () {
@@ -86,6 +93,7 @@ const closeModal = function () {
 
 btnCloseModal.addEventListener("click", function () {
   closeModal();
+  displayTask();
 });
 
 document.addEventListener("keydown", function (e) {
@@ -120,3 +128,15 @@ document.querySelector(".todos-list").addEventListener("click", function (e) {
     }
   }
 });
+
+// document.querySelector(".todos-list").addEventListener("click", function (e) {
+//   e.preventDefault();
+
+//   if(e.target.classList.contains('checkbox')){
+//     if(e.target.cheked){
+//       console.log('it is checked')
+//     } else {
+//       console.log('Not checked');
+//     }
+//   }
+// })
