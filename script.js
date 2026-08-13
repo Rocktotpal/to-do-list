@@ -9,6 +9,7 @@ const overlay = document.querySelector(".overlay");
 const btnCloseModal = document.querySelector(".btn-close-modal");
 const itemCount = document.getElementById("items-left");
 const emptyState = document.querySelector(".empty-state");
+const filters = document.querySelector(".filters");
 
 const now = new Date();
 const options = {
@@ -62,6 +63,9 @@ btnAdd.addEventListener("click", function () {
   emptyState.classList.add("hidden");
   addTask();
   displayTask();
+
+  taskField.value = "";
+  taskField.blur();
 });
 
 document.addEventListener("keydown", function (e) {
@@ -74,6 +78,9 @@ document.addEventListener("keydown", function (e) {
     emptyState.classList.add("hidden");
     addTask();
     displayTask();
+
+    taskField.value = "";
+    taskField.blur();
   }
 });
 
@@ -103,6 +110,14 @@ toDoList.addEventListener("click", function (e) {
     taskArr.splice(index, 1);
 
     displayTask();
+  }
+});
+
+filters.addEventListener("click", function (e) {
+  if (e.target.classList.contains("filter")) {
+    const [...btnFilter] = e.target.parentElement.children;
+    btnFilter.forEach((btn) => btn.classList.remove("active-filter"));
+    e.target.classList.add("active-filter");
   }
 });
 
