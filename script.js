@@ -21,7 +21,7 @@ const options = {
 date.textContent = new Intl.DateTimeFormat("en-IN", options).format(now);
 
 toDoList.innerHTML = "";
-let currentTask = 0;
+// let currentTask = 0;
 let taskArr = [];
 let nextId = 1;
 let currentFilter = "all";
@@ -29,22 +29,32 @@ let currentFilter = "all";
 if (taskArr.length === 0) emptyState.classList.remove("hidden");
 
 const createTask = function (el) {
-  const task =
-    el.completed === false
-      ? `
-    <li class="todo" data-id="${el.id}">
-    <input type="checkbox" class="checkbox" />
-    <div class="task"><p>${el.text}</p></div>
-    <button class="delete"><i class="fa-solid fa-x delete"></i></button>
-    </li>
-    `
-      : `
-    <li class="todo" data-id="${el.id}">
-    <input type="checkbox" class="checkbox" />
-    <div class="task"><p class="task-completed">${el.text}</p></div>
-    <button class="delete"><i class="fa-solid fa-x delete"></i></button>
-    </li>
-    `;
+  // const task =
+  //   el.completed === false
+  //     ? `
+  //   <li class="todo" data-id="${el.id}">
+  //   <input type="checkbox" class="checkbox" />
+  //   <div class="task"><p>${el.text}</p></div>
+  //   <button class="delete"><i class="fa-solid fa-x delete"></i></button>
+  //   </li>
+  //   `
+  //     : `
+  //   <li class="todo" data-id="${el.id}">
+  //   <input type="checkbox" class="checkbox" />
+  //   <div class="task"><p class="task-completed">${el.text}</p></div>
+  //   <button class="delete"><i class="fa-solid fa-x delete"></i></button>
+  //   </li>
+  //   `;
+
+  // Refactored 1: avoid repeated HTML
+
+  const decider = el.completed === false ? "<p>" : '<p class="task-completed">';
+  const task = `
+     <li class="todo" data-id="${el.id}">
+     <input type="checkbox" class="checkbox" />
+     <div class="task">${decider}${el.text}</p></div>
+     <button class="delete"><i class="fa-solid fa-x delete"></i></button>
+     </li>`;
 
   toDoList.insertAdjacentHTML("beforeend", task);
 };
@@ -139,8 +149,6 @@ document.addEventListener("keydown", function (e) {
 });
 
 toDoList.addEventListener("click", function (e) {
-  e.preventDefault();
-
   if (e.target.classList.contains("delete")) {
     const taskToBedelete = Number(e.target.closest(".todo").dataset.id);
 
@@ -160,17 +168,21 @@ filters.addEventListener("click", function (e) {
 
     currentFilter = `${e.target.dataset.state}`;
 
-    if (e.target.dataset.state === "all") {
-      displayTask();
-    }
+    // Refactored 2: displayTask is called based on currentFilter, no separate calling reqd.
 
-    if (e.target.dataset.state === "active") {
-      displayActiveTask();
-    }
+    displayTask();
 
-    if (e.target.dataset.state === "completed") {
-      displayCompletedTask();
-    }
+    // if (e.target.dataset.state === "all") {
+    //   displayTask();
+    // }
+
+    // if (e.target.dataset.state === "active") {
+    //   displayActiveTask();
+    // }
+
+    // if (e.target.dataset.state === "completed") {
+    //   displayCompletedTask();
+    // }
   }
 });
 
