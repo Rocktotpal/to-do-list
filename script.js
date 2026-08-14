@@ -28,10 +28,19 @@ let nextId = 1;
 if (taskArr.length === 0) emptyState.classList.remove("hidden");
 
 const createTask = function (el) {
-  const task = `
+  const task =
+    el.completed === false
+      ? `
     <li class="todo" data-id="${el.id}">
     <input type="checkbox" class="checkbox" />
     <div class="task"><p>${el.text}</p></div>
+    <button class="delete"><i class="fa-solid fa-x delete"></i></button>
+    </li>
+    `
+      : `
+    <li class="todo" data-id="${el.id}">
+    <input type="checkbox" class="checkbox" />
+    <div class="task"><p class="task-completed">${el.text}</p></div>
     <button class="delete"><i class="fa-solid fa-x delete"></i></button>
     </li>
     `;
@@ -122,6 +131,10 @@ filters.addEventListener("click", function (e) {
     const [...btnFilter] = e.target.parentElement.children;
     btnFilter.forEach((btn) => btn.classList.remove("active-filter"));
     e.target.classList.add("active-filter");
+
+    if (e.target.dataset.state === "all") {
+      displayTask();
+    }
 
     if (e.target.dataset.state === "active") {
       const activeTasks = taskArr.filter((task) => task.completed === false);
