@@ -24,6 +24,7 @@ toDoList.innerHTML = "";
 let currentTask = 0;
 let taskArr = [];
 let nextId = 1;
+let currentFilter = "all";
 
 if (taskArr.length === 0) emptyState.classList.remove("hidden");
 
@@ -48,11 +49,36 @@ const createTask = function (el) {
   toDoList.insertAdjacentHTML("beforeend", task);
 };
 
-const displayTask = function () {
+const displayActiveTask = function () {
+  const activeTasks = taskArr.filter((task) => task.completed === false);
+
   toDoList.innerHTML = "";
-  taskArr.forEach(function (el) {
+  activeTasks.forEach(function (el) {
     createTask(el);
   });
+};
+
+const displayCompletedTask = function () {
+  const completedTasks = taskArr.filter((task) => task.completed === true);
+
+  toDoList.innerHTML = "";
+  completedTasks.forEach(function (el) {
+    createTask(el);
+  });
+};
+
+const displayTask = function () {
+  toDoList.innerHTML = "";
+
+  if (currentFilter === "all") {
+    taskArr.forEach(function (el) {
+      createTask(el);
+    });
+  } else if (currentFilter === "active") {
+    displayActiveTask();
+  } else if (currentFilter === "completed") {
+    displayCompletedTask();
+  }
 };
 
 const addTask = function () {
@@ -132,26 +158,18 @@ filters.addEventListener("click", function (e) {
     btnFilter.forEach((btn) => btn.classList.remove("active-filter"));
     e.target.classList.add("active-filter");
 
+    currentFilter = `${e.target.dataset.state}`;
+
     if (e.target.dataset.state === "all") {
       displayTask();
     }
 
     if (e.target.dataset.state === "active") {
-      const activeTasks = taskArr.filter((task) => task.completed === false);
-
-      toDoList.innerHTML = "";
-      activeTasks.forEach(function (el) {
-        createTask(el);
-      });
+      displayActiveTask();
     }
 
     if (e.target.dataset.state === "completed") {
-      const completedTasks = taskArr.filter((task) => task.completed === true);
-
-      toDoList.innerHTML = "";
-      completedTasks.forEach(function (el) {
-        createTask(el);
-      });
+      displayCompletedTask();
     }
   }
 });
