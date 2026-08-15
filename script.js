@@ -59,36 +59,40 @@ const createTask = function (el) {
   toDoList.insertAdjacentHTML("beforeend", task);
 };
 
-const displayActiveTask = function () {
-  const activeTasks = taskArr.filter((task) => task.completed === false);
+// const displayActiveTask = function () {
+//   const activeTasks = taskArr.filter((task) => task.completed === false);
 
-  toDoList.innerHTML = "";
-  activeTasks.forEach(function (el) {
-    createTask(el);
-  });
-};
+//   toDoList.innerHTML = "";
+//   activeTasks.forEach(function (el) {
+//     createTask(el);
+//   });
+// };
 
-const displayCompletedTask = function () {
-  const completedTasks = taskArr.filter((task) => task.completed === true);
+// const displayCompletedTask = function () {
+//   const completedTasks = taskArr.filter((task) => task.completed === true);
 
-  toDoList.innerHTML = "";
-  completedTasks.forEach(function (el) {
-    createTask(el);
-  });
-};
+//   toDoList.innerHTML = "";
+//   completedTasks.forEach(function (el) {
+//     createTask(el);
+//   });
+// };
 
 const displayTask = function () {
   toDoList.innerHTML = "";
 
+  const activeTasks = taskArr.filter((task) => task.completed === false);
+  const completedTasks = taskArr.filter((task) => task.completed === true);
+
   if (currentFilter === "all") {
-    taskArr.forEach(function (el) {
-      createTask(el);
-    });
+    taskArr.forEach((el) => createTask(el));
   } else if (currentFilter === "active") {
-    displayActiveTask();
+    activeTasks.forEach((el) => createTask(el));
   } else if (currentFilter === "completed") {
-    displayCompletedTask();
+    completedTasks.forEach((el) => createTask(el));
   }
+
+  const decider = activeTasks.length > 1 ? "items" : "item";
+  itemCount.textContent = `${activeTasks.length} ${decider} left`;
 };
 
 const addTask = function () {
