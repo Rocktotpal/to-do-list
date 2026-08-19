@@ -207,10 +207,8 @@ toDoList.addEventListener("click", function (e) {
 });
 
 clearCompleted.addEventListener("click", function () {
-  taskArr.forEach(function (item, i) {
-    if (item.completed === true) {
-      taskArr.splice(i, 1);
-    }
+  taskArr = taskArr.filter((el) => {
+    if (el.completed === false) return el;
   });
   displayTask();
 });
