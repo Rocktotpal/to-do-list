@@ -196,9 +196,11 @@ toDoList.addEventListener("click", function (e) {
     const dataId = Number(e.target.closest(".todo").dataset.id);
     const index = taskArr.findIndex((el) => el.id === dataId);
 
-    if (taskArr[index].completed === false) {
-      taskArr[index].completed = true;
-    } else taskArr[index].completed = false;
+    // if (taskArr[index].completed === false) {
+    //   taskArr[index].completed = true;
+    // } else taskArr[index].completed = false;
+
+    taskArr[index].completed = !taskArr[index].completed;
 
     displayTask();
   }
