@@ -192,36 +192,49 @@ filters.addEventListener("click", function (e) {
 
 toDoList.addEventListener("click", function (e) {
   if (e.target.classList.contains("checkbox")) {
-    if (!e.target.classList.contains("checkbox-clicked")) {
-      e.target.classList.add("checkbox-clicked");
-      e.target
-        .closest(".todo")
-        .querySelector("p")
-        .classList.add("task-completed");
-      const completedId = Number(e.target.closest(".todo").dataset.id);
+    const dataId = Number(e.target.closest(".todo").dataset.id);
+    const index = taskArr.findIndex((el) => el.id === dataId);
 
-      taskArr.forEach(function (task) {
-        if (task.id === completedId) {
-          task.completed = true;
-        }
-      });
-    } else {
-      e.target.classList.remove("checkbox-clicked");
-      e.target
-        .closest(".todo")
-        .querySelector("p")
-        .classList.remove("task-completed");
+    if (taskArr[index].completed === false) {
+      taskArr[index].completed = true;
+    } else taskArr[index].completed = false;
 
-      const completedId = Number(e.target.closest(".todo").dataset.id);
-
-      taskArr.forEach(function (task) {
-        if (task.id === completedId) {
-          task.completed = false;
-        }
-      });
-    }
+    displayTask();
   }
 });
+
+// toDoList.addEventListener("click", function (e) {
+//   if (e.target.classList.contains("checkbox")) {
+//     if (!e.target.classList.contains("checkbox-clicked")) {
+//       e.target.classList.add("checkbox-clicked");
+//       e.target
+//         .closest(".todo")
+//         .querySelector("p")
+//         .classList.add("task-completed");
+//       const completedId = Number(e.target.closest(".todo").dataset.id);
+
+//       taskArr.forEach(function (task) {
+//         if (task.id === completedId) {
+//           task.completed = true;
+//         }
+//       });
+//     } else {
+//       e.target.classList.remove("checkbox-clicked");
+//       e.target
+//         .closest(".todo")
+//         .querySelector("p")
+//         .classList.remove("task-completed");
+
+//       const completedId = Number(e.target.closest(".todo").dataset.id);
+
+//       taskArr.forEach(function (task) {
+//         if (task.id === completedId) {
+//           task.completed = false;
+//         }
+//       });
+//     }
+//   }
+// });
 
 /*
 
