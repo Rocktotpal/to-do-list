@@ -10,6 +10,7 @@ const btnCloseModal = document.querySelector(".btn-close-modal");
 const itemCount = document.getElementById("items-left");
 const emptyState = document.querySelector(".empty-state");
 const filters = document.querySelector(".filters");
+const clearCompleted = document.getElementById("clear-completed");
 
 const now = new Date();
 const options = {
@@ -201,6 +202,15 @@ toDoList.addEventListener("click", function (e) {
 
     displayTask();
   }
+});
+
+clearCompleted.addEventListener("click", function () {
+  taskArr.forEach(function (item, i) {
+    if (item.completed === true) {
+      taskArr.splice(i, 1);
+    }
+  });
+  displayTask();
 });
 
 // toDoList.addEventListener("click", function (e) {
