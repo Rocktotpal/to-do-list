@@ -54,9 +54,12 @@ const createTask = function (el) {
   const decider = el.completed === false ? "<p>" : '<p class="task-completed">';
   const task = `
      <li class="todo" data-id="${el.id}">
-     <input type="checkbox" ${checkboxDecider} />
-     <div class="task">${decider}${el.text}</p></div>
-     <button class="delete"><i class="fa-solid fa-x delete"></i></button>
+      <label class="checkbox-container">
+        <input type="checkbox" ${checkboxDecider} />
+        <span class="checkmark"></span>
+      </label>
+      <div class="task">${decider}${el.text}</p></div>
+      <button class="delete"><i class="fa-solid fa-x delete"></i></button>
      </li>`;
 
   toDoList.insertAdjacentHTML("beforeend", task);

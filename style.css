@@ -141,12 +141,36 @@ body {
   border-radius: 5px;
 
   cursor: pointer;
-  /* transition: checked 0.2s; */
+  transition: all 0.2s;
 }
 
 .checkbox:checked {
   border-color: rgb(8, 210, 8);
   background-color: rgb(8, 210, 8);
+}
+
+.checkbox-container {
+  position: relative;
+}
+
+.checkmark {
+  position: absolute;
+  opacity: 0;
+
+  top: 4px;
+  left: 8px;
+}
+
+.checkbox:checked + .checkmark {
+  opacity: 1;
+
+  width: 5px;
+  height: 12px;
+
+  border-right: 2px solid white;
+  border-bottom: 2px solid white;
+
+  transform: rotate(45deg);
 }
 
 .task-completed {
