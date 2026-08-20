@@ -78,6 +78,14 @@ const createTask = function (el) {
 //   });
 // };
 
+const showEmptyState = function () {
+  emptyState.classList.remove("hidden");
+};
+
+const closeEmptyState = function () {
+  emptyState.classList.add("hidden");
+};
+
 const displayTask = function () {
   toDoList.innerHTML = "";
 
@@ -85,10 +93,13 @@ const displayTask = function () {
   const completedTasks = taskArr.filter((task) => task.completed === true);
 
   if (currentFilter === "all") {
+    taskArr.length === 0 ? showEmptyState() : closeEmptyState();
     taskArr.forEach((el) => createTask(el));
   } else if (currentFilter === "active") {
+    activeTasks.length === 0 ? showEmptyState() : closeEmptyState();
     activeTasks.forEach((el) => createTask(el));
   } else if (currentFilter === "completed") {
+    completedTasks.length === 0 ? showEmptyState() : closeEmptyState();
     completedTasks.forEach((el) => createTask(el));
   }
 
@@ -114,7 +125,7 @@ const addTask = function () {
 };
 
 btnAdd.addEventListener("click", function () {
-  emptyState.classList.add("hidden");
+  closeEmptyState();
   addTask();
   displayTask();
 
@@ -129,7 +140,7 @@ document.addEventListener("keydown", function (e) {
       overlay.classList.remove("hidden");
       return;
     }
-    emptyState.classList.add("hidden");
+    closeEmptyState();
     addTask();
     displayTask();
 
