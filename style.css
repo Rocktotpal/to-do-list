@@ -117,6 +117,8 @@ body {
 
 .todo {
   display: flex;
+  justify-content: center;
+  align-items: center;
   gap: 4px;
   padding-left: 10px;
 }
@@ -129,16 +131,27 @@ body {
   padding: 4px;
 }
 
-.checkbox-clicked {
-  background-color: rgb(61, 171, 6);
-  color: rgb(3, 143, 3);
+.checkbox {
+  appearance: none;
+
   height: 20px;
   width: 20px;
+
+  border: 2px solid grey;
+  border-radius: 5px;
+
+  cursor: pointer;
+  /* transition: checked 0.2s; */
+}
+
+.checkbox:checked {
+  border-color: rgb(8, 210, 8);
+  background-color: rgb(8, 210, 8);
 }
 
 .task-completed {
-  background-color: rgb(8, 210, 8);
-  color: #fdfdfd;
+  background-color: rgb(154, 234, 154);
+  color: #000000;
   text-decoration: line-through;
 }
 

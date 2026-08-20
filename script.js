@@ -49,10 +49,12 @@ const createTask = function (el) {
 
   // Refactored 1: avoid repeated HTML
 
+  const checkboxDecider =
+    el.completed === false ? `class="checkbox"` : `class="checkbox" checked`;
   const decider = el.completed === false ? "<p>" : '<p class="task-completed">';
   const task = `
      <li class="todo" data-id="${el.id}">
-     <input type="checkbox" class="checkbox" />
+     <input type="checkbox" ${checkboxDecider} />
      <div class="task">${decider}${el.text}</p></div>
      <button class="delete"><i class="fa-solid fa-x delete"></i></button>
      </li>`;
