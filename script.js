@@ -88,7 +88,7 @@ const displayTask = function () {
 
 const addTask = function () {
   if (taskField.value.trim() === "") {
-    showModal.classList.remove("hidden");
+    showModal.classList.add("open");
     overlay.classList.remove("hidden");
     return;
   }
