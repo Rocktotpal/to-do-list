@@ -10,6 +10,7 @@ const btnCloseModal = document.querySelector(".btn-close-modal");
 const itemCount = document.getElementById("items-left");
 const emptyState = document.querySelector(".empty-state");
 const filters = document.querySelector(".filters");
+const filterBtn = document.querySelectorAll(".filter");
 const clearCompleted = document.getElementById("clear-completed");
 
 const now = new Date();
@@ -22,6 +23,7 @@ const options = {
 date.textContent = new Intl.DateTimeFormat("en-IN", options).format(now);
 
 toDoList.innerHTML = "";
+showModal.classList.remove("open");
 let taskArr = [];
 let nextId = 1;
 let currentFilter = "all";
@@ -113,7 +115,7 @@ btnAdd.addEventListener("click", function () {
 document.addEventListener("keydown", function (e) {
   if (e.key === "Enter") {
     if (taskField.value.trim() === "") {
-      showModal.classList.remove("hidden");
+      showModal.classList.add("open");
       overlay.classList.remove("hidden");
       return;
     }
@@ -129,7 +131,7 @@ document.addEventListener("keydown", function (e) {
 // Modal window handlers for empty input
 
 const closeModal = function () {
-  showModal.classList.add("hidden");
+  showModal.classList.remove("open");
   overlay.classList.add("hidden");
 };
 
@@ -164,6 +166,11 @@ filters.addEventListener("click", function (e) {
     const [...btnFilter] = e.target.parentElement.children;
     btnFilter.forEach((btn) => btn.classList.remove("active-filter"));
     e.target.classList.add("active-filter");
+
+    // const clicked = e.target.closest(".filter");
+    // filterBtn.forEach((el) => el.classList.remove("active-filter"));
+    // clicked.classList.add("active-filter");
+    // currentFilter = `${clicked.dataset.state}`;
 
     currentFilter = `${e.target.dataset.state}`;
 
