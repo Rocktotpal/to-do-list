@@ -82,6 +82,8 @@ const displayTask = function () {
 
   const decider = activeTasks.length > 1 ? "items" : "item";
   itemCount.textContent = `${activeTasks.length} ${decider} left`;
+
+  setLocalStorage();
 };
 
 // Task addition
@@ -205,3 +207,19 @@ clearCompleted.addEventListener("click", function () {
   });
   displayTask();
 });
+
+// Implementing localStorage
+
+const setLocalStorage = function () {
+  localStorage.setItem("tasks", JSON.stringify(taskArr));
+};
+
+const getLocalStorage = function () {
+  const data = JSON.parse(localStorage.getItem("tasks"));
+
+  if (!data) return;
+  taskArr = data;
+  displayTask();
+};
+
+getLocalStorage();
