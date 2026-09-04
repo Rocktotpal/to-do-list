@@ -25,7 +25,7 @@ date.textContent = new Intl.DateTimeFormat("en-IN", options).format(now);
 toDoList.innerHTML = "";
 showModal.classList.remove("open");
 let taskArr = [];
-let nextId = 1;
+let nextId;
 let currentFilter = "all";
 
 if (taskArr.length === 0) emptyState.classList.remove("hidden");
@@ -95,6 +95,8 @@ const addTask = function () {
     return;
   }
 
+  nextId = Date.now();
+
   const todoObj = {
     id: nextId,
     text: taskField.value,
@@ -102,7 +104,6 @@ const addTask = function () {
   };
 
   taskArr.push(todoObj);
-  nextId++;
 };
 
 btnAdd.addEventListener("click", function () {
